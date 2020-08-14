@@ -1,117 +1,178 @@
+// Copyright 2018 The Flutter team. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+    return MaterialApp(title: 'Tasky', home: Home());
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        appBar: AppBar(
+          title: Text(''),
+          backgroundColor: Colors.white,
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        // body: _buildSuggestions(),
+        body: Column(
+          children: [
+            Image(
+              image: NetworkImage(
+                  'https://s3-alpha-sig.figma.com/img/f8eb/b413/bf0a18df687856c8affa8496834d54b2?Expires=1598227200&Signature=Oh6wyREdcsL7iaJfbcpo7JDsLIFHtipC0LMY~7ARlvJ5DGA6vMAqgDCqoVUhoTvYZ1tp2rAuSZlXgHUZNKFODDqOyBppn529poX8A0Eh1s5DRkqmhNIQz-hkM7qpXkdRzQgZqGhw~3vwYVr7tB0foGUv-n~5rbOPU25V6k2geqBeQpyfMy9ftxsG65oklIAsK0A71noaltgKidMu9u2gmOVFFz-y1BOrYEOmbXC~4jvBZyjiRKeZa0iIMFLqNbv7gpSRiqpt4Jlbyh4C8tJQkeNh4Qhcx~12p-QsIA7iI9tVDmysi~HU1KRtltqtBgusXpOFbRE7R6pA9ZA6VYpFGA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+            ),
+            Text(
+              'Tasky',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito Sans',
+                  fontSize: 30),
+            ),
+            Image(
+              image: NetworkImage(
+                  'https://s3-alpha-sig.figma.com/img/2e79/063d/89417f0bf4813189d9ec50e24cfc94ec?Expires=1598227200&Signature=MYzKB0mXFCh-eGIbZHRPSuAvjNeyUUBWdGO~3cLevz4gG8dsMd0bet6YEYzAgIWVcjLlfCBagZdQECJ1QZT4yk0emiU5bBZnyn51nnrlDrAJx0FcMmfzl3-mqNzpwg0PWuEoHy5z62Hi~toKyEqBv1DWzbl53f1QLEMX2XcLYXZkIhv06l4h-yRU7nLvWVaV-X3AkRf4VEriSqtrc-egi-TRX3IN2X0Aroy9WNdSHXrrtatpPaYnrKGGWWZMG~7pij7irBAzRaktlGjzfrKe~q9dFRrEVZBmdP6lb8CbIr1Q6fHw7rAvWl5Idgf-Z3~~~KgHaEa12sI0DDAR0k2TOw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+            ),
+            Text.rich(TextSpan(text: "Tasks made", children: <TextSpan>[
+              TextSpan(
+                  text: " for people",
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+            ])),
+            Text(
+              'By People',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito Sans',
+                  fontSize: 30),
+            ),
+            RaisedButton(
+              onPressed: () {
+                navigateToSubPage(context);
+              },
+              textColor: Colors.white,
+              color: Colors.blue,
+              padding: const EdgeInsets.all(0.0),
+              child: const Text('Get Started', style: TextStyle(fontSize: 18)),
+            )
+          ],
+        ));
+  }
+}
+
+Future navigateToSubPage(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));
+}
+
+class SignIn extends StatefulWidget {
+  @override
+  _SignInState createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(""),
+          backgroundColor: Colors.white,
+        ),
+        body: Column(
+          children: [
+            Row(children: <Widget>[
+              Text(
+                "Let's Sign You In",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito Sans',
+                  fontSize: 30,
+                ),
+              ),
+            ]),
+            Row(children: <Widget>[
+              Text(
+                "Welcome back, you've been missed!",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontFamily: 'DM Sans',
+                  fontSize: 14,
+                  color: Color(0x171717).withOpacity(0.6),
+                ),
+              ),
+            ]),
+            Text(
+              "Email",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontFamily: 'Nunito Sans',
+                fontSize: 12,
+                color: Color(0x8F92A1),
+              ),
+            ),
+            TextField(
+                obscureText: false,
+                style: TextStyle(fontFamily: 'Nunito Sans', fontSize: 16),
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                  hintText: "Email",
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0x8F92A1))),
+                )),
+            Text(
+              "Password",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontFamily: 'Nunito Sans',
+                fontSize: 12,
+                color: Color(0x8F92A1),
+              ),
+            ),
+            TextField(
+                obscureText: true,
+                style: TextStyle(fontFamily: 'Nunito Sans', fontSize: 16),
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                  hintText: "Password",
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0x8F92A1))),
+                )),
+            RaisedButton(
+              onPressed: () {},
+              textColor: Colors.white,
+              color: Colors.blue,
+              padding: const EdgeInsets.all(0.0),
+              child: const Text('Sign In', style: TextStyle(fontSize: 18)),
+            ),
+            Text(
+              "Don't have an account? Sign up",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontFamily: 'DM Sans',
+                fontSize: 14,
+                color: Color(0x171717).withOpacity(0.6),
+              ),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              textColor: Colors.white,
+              color: Colors.blue,
+              padding: const EdgeInsets.all(0.0),
+              child: const Text('Back', style: TextStyle(fontSize: 12)),
+            )
+          ],
+        ));
   }
 }
