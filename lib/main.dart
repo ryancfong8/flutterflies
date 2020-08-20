@@ -183,16 +183,14 @@ class _SignInState extends State<SignIn> {
               ),
               child: const Text('Sign In', style: TextStyle(fontSize: 18)),
             )),
-        Text(
-          "Don't have an account? Sign up",
-          textAlign: TextAlign.left,
-          style: TextStyle(
-            fontWeight: FontWeight.normal,
-            fontFamily: 'DM Sans',
-            fontSize: 14,
-            color: Color(0x171717).withOpacity(0.6),
-          ),
-        ),
+        Text.rich(TextSpan(
+            text: "Don't have an account? ",
+            style: TextStyle(fontSize: 12),
+            children: <TextSpan>[
+              TextSpan(
+                  text: "Sign Up",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+            ])),
         Container(
             margin: EdgeInsets.only(top: 15),
             child: GestureDetector(
